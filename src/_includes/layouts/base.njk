@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} — Atlas Poker Clube</title>
+  <meta name="description" content="{{ description or 'Atlas Poker Clube — 50% Rakeback, KKPoker, Foco, Estratégia, Excelência.' }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="/">ATLAS <span>POKER CLUBE</span></a>
+  <div class="nav-links">
+    <a href="/#rakeback">Rakeback</a>
+    <a href="/#bonus">Bônus</a>
+    <a href="/blog/" class="{{ 'active' if page.url.startsWith('/blog') }}">Blog</a>
+    <a href="/#como">Como Entrar</a>
+    <a href="https://kkpoker.club/SEUID" target="_blank" rel="noopener" class="nav-cta">Entrar no Clube →</a>
+  </div>
+</nav>
+
+{{ content | safe }}
+
+<footer>
+  <div class="container">
+    <p>© 2026 Atlas Poker Clube · Operado no <a href="https://kkpoker.co">KKPoker</a> (Ace King IOM Limited) · Licença Isle of Man</p>
+    <p style="margin-top:6px;">O jogo pode ser prejudicial se não controlado. Jogue com responsabilidade. +18 apenas.</p>
+  </div>
+</footer>
+
+<script>
+  if (!CSS.supports('animation-timeline','scroll()')) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }
+</script>
+
+</body>
+</html>

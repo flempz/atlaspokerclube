@@ -1,0 +1,47 @@
+---
+layout: base.njk
+---
+
+<article>
+
+  <header class="post-hero">
+    <div class="container">
+      <div class="post-hero-inner">
+        <span class="post-hero-cat">{{ category or "Geral" }}</span>
+        <h1 class="post-hero-title">{{ title }}</h1>
+        <div class="post-hero-meta">
+          <span>📅 {{ page.date | dateFormat }}</span>
+          <span>⏱ {{ readtime or "5 min" }} de leitura</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {# IMAGEM DE CAPA — adicione image: caminho/da/imagem.jpg no frontmatter do post #}
+  <div class="container" style="padding-top:32px;padding-bottom:0;">
+    <div class="post-cover">
+      {% if image %}
+        <img src="{{ image }}" alt="{{ title }}">
+      {% else %}
+        <div class="post-cover-placeholder">
+          <span style="font-size:40px;">🖼️</span>
+          <p>Adicione <code>image: /assets/img/nome.jpg</code> no topo do post</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="post-content-wrap">
+    <div class="container">
+      <div class="post-content">
+        {{ content | safe }}
+      </div>
+
+      <nav class="post-nav">
+        <a href="/blog/">← Voltar ao blog</a>
+        <a href="https://kkpoker.club/SEUID" target="_blank" rel="noopener">Entrar no Clube →</a>
+      </nav>
+    </div>
+  </div>
+
+</article>

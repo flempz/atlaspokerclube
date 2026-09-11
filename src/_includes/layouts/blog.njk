@@ -1,0 +1,84 @@
+---
+layout: base.njk
+---
+
+<section class="blog-header">
+  <div class="container">
+    <span class="tag">Atlas Poker Clube</span>
+    <h1 class="blog-h1">O <span class="gold">Blog</span> do Clube</h1>
+    <p class="blog-sub">Estratégia, disciplina e bastidores — conteúdo para quem joga com foco e quer evoluir de verdade.</p>
+    <div class="filters">
+      <a href="/blog/" class="filter-pill {{ 'active' if not category }}">Todos</a>
+      <a href="/blog/categoria/estrategia/" class="filter-pill">Estratégia</a>
+      <a href="/blog/categoria/disciplina/" class="filter-pill">Disciplina</a>
+      <a href="/blog/categoria/comunidade/" class="filter-pill">Comunidade</a>
+      <a href="/blog/categoria/promocoes/" class="filter-pill">Promoções</a>
+    </div>
+  </div>
+</section>
+
+<section class="posts-section">
+  <div class="container">
+
+    {# Post em destaque: o mais recente #}
+    {% set featured = collections.posts | first %}
+    {% if featured %}
+    <a href="{{ featured.url }}" class="post-featured reveal">
+      <div class="post-img">
+        {% if featured.data.image %}
+          <img src="{{ featured.data.image }}" alt="{{ featured.data.title }}">
+        {% else %}
+          <div class="post-img-placeholder">
+            <span class="icon">🖼️</span>
+            <span class="label">Imagem do post · 1200×750px</span>
+          </div>
+        {% endif %}
+        <span class="post-cat">{{ featured.data.category or "Sem categoria" }}</span>
+      </div>
+      <div class="post-body">
+        <div class="post-date">{{ featured.date | dateFormat }} · Post em destaque</div>
+        <h2 class="post-title">{{ featured.data.title }}</h2>
+        <p class="post-excerpt">{{ featured.data.excerpt }}</p>
+        <div class="post-meta">
+          <span class="post-readmore">Ler artigo completo →</span>
+          <span class="post-readtime">{{ featured.data.readtime or "5 min" }} de leitura</span>
+        </div>
+      </div>
+    </a>
+    {% endif %}
+
+    {# Demais posts #}
+    {% set otherPosts = collections.posts | slice(1) %}
+    {% if otherPosts.length > 0 %}
+    <div class="posts-grid">
+      {% for post in otherPosts %}
+      <a href="{{ post.url }}" class="post-card reveal">
+        <div class="post-img">
+          {% if post.data.image %}
+            <img src="{{ post.data.image }}" alt="{{ post.data.title }}">
+          {% else %}
+            <div class="post-img-placeholder">
+              <span class="icon">🖼️</span>
+              <span class="label">800×500px</span>
+            </div>
+          {% endif %}
+          <span class="post-cat">{{ post.data.category or "Geral" }}</span>
+        </div>
+        <div class="post-body">
+          <div class="post-date">{{ post.date | dateFormat }}</div>
+          <h3 class="post-title">{{ post.data.title }}</h3>
+          <p class="post-excerpt">{{ post.data.excerpt }}</p>
+          <div class="post-meta">
+            <span class="post-readmore">Ler artigo →</span>
+            <span class="post-readtime">{{ post.data.readtime or "4 min" }}</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{{ content | safe }}
